@@ -1,0 +1,58 @@
+# File config.yml mẫu
+# Cấu hình cơ bản cho ứng dụng
+
+app:
+  name: "My Application"
+  version: "1.0.0"
+  environment: "development" # development|staging|production
+  debug: true
+  port: 8080
+
+database:
+  host: "localhost"
+  port: 5432
+  name: "app_db"
+  username: "db_user"
+  password: "secure_password"
+  pool:
+    max_connections: 10
+    idle_timeout: 30000 # milliseconds
+
+logging:
+  level: "info" # debug|info|warning|error|critical
+  path: "/var/log/app.log"
+  rotation:
+    size: "10MB"
+    keep: 7 # days
+
+api:
+  base_url: "https://api.example.com/v1"
+  timeout: 5000 # milliseconds
+  endpoints:
+    users: "/users"
+    products: "/products"
+    orders: "/orders"
+
+auth:
+  secret_key: "your_jwt_secret_key_here"
+  token_expiry: 3600 # seconds (1 hour)
+  algorithm: "HS256"
+
+email:
+  smtp:
+    host: "smtp.example.com"
+    port: 587
+    username: "email_user"
+    password: "email_password"
+    tls: true
+  from_address: "noreply@example.com"
+  templates:
+    welcome: "emails/welcome.html"
+    reset_password: "emails/reset_password.html"
+
+features:
+  enable_new_ui: false
+  maintenance_mode: false
+  allowed_ips:
+    - "192.168.1.1"
+    - "10.0.0.1"
