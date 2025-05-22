@@ -1,58 +1,24 @@
-# File config.yml mẫu
-# Cấu hình cơ bản cho ứng dụng
+backend:
+  name: git-gateway
+  branch: main # Hoặc tên nhánh chính của repo của bạn (ví dụ: master)
 
-app:
-  name: "My Application"
-  version: "1.0.0"
-  environment: "development" # development|staging|production
-  debug: true
-  port: 8080
+publish_mode: editorial_workflow # Tùy chọn: Bật quy trình làm việc biên tập nếu bạn cần xem xét trước khi xuất bản
+# publish_mode: simple # Tùy chọn: Xuất bản trực tiếp khi lưu
 
-database:
-  host: "localhost"
-  port: 5432
-  name: "app_db"
-  username: "db_user"
-  password: "secure_password"
-  pool:
-    max_connections: 10
-    idle_timeout: 30000 # milliseconds
+media_folder: "static/uploads" # Thư mục nơi hình ảnh và tệp phương tiện được lưu trữ trong repo của bạn
+public_folder: "/uploads" # Thư mục công khai để truy cập các tệp phương tiện (thường là đường dẫn tương đối từ gốc trang web)
 
-logging:
-  level: "info" # debug|info|warning|error|critical
-  path: "/var/log/app.log"
-  rotation:
-    size: "10MB"
-    keep: 7 # days
-
-api:
-  base_url: "https://api.example.com/v1"
-  timeout: 5000 # milliseconds
-  endpoints:
-    users: "/users"
-    products: "/products"
-    orders: "/orders"
-
-auth:
-  secret_key: "your_jwt_secret_key_here"
-  token_expiry: 3600 # seconds (1 hour)
-  algorithm: "HS256"
-
-email:
-  smtp:
-    host: "smtp.example.com"
-    port: 587
-    username: "email_user"
-    password: "email_password"
-    tls: true
-  from_address: "noreply@example.com"
-  templates:
-    welcome: "emails/welcome.html"
-    reset_password: "emails/reset_password.html"
-
-features:
-  enable_new_ui: false
-  maintenance_mode: false
-  allowed_ips:
-    - "192.168.1.1"
-    - "10.0.0.1"
+collections:
+  - name: "posts" # Tên định danh của bộ sưu tập (ví dụ: 'posts', 'blog', 'articles')
+    label: "Bài viết" # Nhãn hiển thị trong Netlify CMS
+    folder: "content/posts" # Thư mục trong repo chứa các bài viết của bạn
+    create: true # Cho phép tạo bài viết mới
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}" # Định dạng slug cho URL bài viết
+    fields: # Các trường dữ liệu cho mỗi bài viết
+      - {label: "Tiêu đề", name: "title", widget: "string", required: true}
+      - {label: "Ngày xuất bản", name: "date", widget: "datetime", default: "", format: "YYYY-MM-DDTHH:mm:ssZ", picker_utc: true}
+      - {label: "Ảnh đại diện", name: "thumbnail", widget: "image", required: false}
+      - {label: "Tóm tắt", name: "description", widget: "text", required: false}
+      - {label: "Nội dung", name: "body", widget: "markdown", required: true}
+      - {label: "Tags", name: "tags", widget: "list", required: false, allow_add: true, default: []}
+      - {label: "Trạng thái", name: "draft", widget: "boolean", default: true, required: false} # Sử dụng cho nháp/xuất bản
