@@ -1,24 +1,20 @@
 backend:
   name: git-gateway
-  branch: main # Hoặc tên nhánh chính của repo của bạn (ví dụ: master)
+  branch: main
 
-publish_mode: editorial_workflow # Tùy chọn: Bật quy trình làm việc biên tập nếu bạn cần xem xét trước khi xuất bản
-# publish_mode: simple # Tùy chọn: Xuất bản trực tiếp khi lưu
-
-media_folder: "static/uploads" # Thư mục nơi hình ảnh và tệp phương tiện được lưu trữ trong repo của bạn
-public_folder: "/uploads" # Thư mục công khai để truy cập các tệp phương tiện (thường là đường dẫn tương đối từ gốc trang web)
+media_folder: "static/uploads"
+public_folder: "/uploads"
 
 collections:
-  - name: "posts" # Tên định danh của bộ sưu tập (ví dụ: 'posts', 'blog', 'articles')
-    label: "Bài viết" # Nhãn hiển thị trong Netlify CMS
-    folder: "content/posts" # Thư mục trong repo chứa các bài viết của bạn
-    create: true # Cho phép tạo bài viết mới
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}" # Định dạng slug cho URL bài viết
-    fields: # Các trường dữ liệu cho mỗi bài viết
-      - {label: "Tiêu đề", name: "title", widget: "string", required: true}
-      - {label: "Ngày xuất bản", name: "date", widget: "datetime", default: "", format: "YYYY-MM-DDTHH:mm:ssZ", picker_utc: true}
-      - {label: "Ảnh đại diện", name: "thumbnail", widget: "image", required: false}
-      - {label: "Tóm tắt", name: "description", widget: "text", required: false}
-      - {label: "Nội dung", name: "body", widget: "markdown", required: true}
-      - {label: "Tags", name: "tags", widget: "list", required: false, allow_add: true, default: []}
-      - {label: "Trạng thái", name: "draft", widget: "boolean", default: true, required: false} # Sử dụng cho nháp/xuất bản
+  - name: "posts"
+    label: "Bài viết"
+    folder: "content/posts"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "Tiêu đề", name: "title", widget: "string", required: true }
+      - { label: "Ngày đăng", name: "date", widget: "datetime", required: true }
+      - { label: "Ảnh minh họa", name: "thumbnail", widget: "image" }
+      - { label: "Tóm tắt", name: "description", widget: "text" }
+      - { label: "Nội dung", name: "body", widget: "markdown" }
+      - { label: "Thể loại", name: "tags", widget: "list", default: ["Anime"] }
