@@ -1,20 +1,30 @@
 backend:
   name: git-gateway
-  branch: main
+  branch: main # Hoặc master, tùy thuộc vào tên nhánh chính của bạn
 
-media_folder: "static/uploads"
-public_folder: "/uploads"
+media_folder: "static/uploads" # Đường dẫn đến thư mục chứa ảnh/media trong dự án của bạn
+public_folder: "/uploads"     # Đường dẫn công khai đến thư mục media từ gốc website
 
 collections:
-  - name: "posts"
-    label: "Bài viết"
-    folder: "content/posts"
+  - name: "posts" # Tên định danh cho loại nội dung này (ví dụ: bài viết)
+    label: "Bài viết" # Tên hiển thị trên giao diện CMS
+    folder: "_posts" # Thư mục nơi các bài viết sẽ được lưu trữ (ví dụ: dùng cho Jekyll)
+    create: true # Cho phép tạo bài viết mới
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}" # Định dạng tên file
+    fields: # Các trường dữ liệu cho mỗi bài viết
+      - {label: "Tiêu đề", name: "title", widget: "string"}
+      - {label: "Ngày đăng", name: "date", widget: "datetime"}
+      - {label: "Ảnh đại diện", name: "thumbnail", widget: "image", required: false}
+      - {label: "Tóm tắt", name: "description", widget: "text"}
+      - {label: "Nội dung", name: "body", widget: "markdown"}
+      - {label: "Tags", name: "tags", widget: "list", allow_add: true, field: {label: "Tag", name: "tag", widget: "string"}}
+      - {label: "Danh mục", name: "category", widget: "select", options: ["Công nghệ", "Cuộc sống", "Du lịch"], default: "Công nghệ"} # Ví dụ về danh mục cố định
+
+  - name: "pages" # Tên định danh cho loại nội dung này (ví dụ: trang tĩnh)
+    label: "Trang"
+    folder: "_pages" # Thư mục nơi các trang sẽ được lưu trữ
     create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    slug: "{{slug}}"
     fields:
-      - { label: "Tiêu đề", name: "title", widget: "string", required: true }
-      - { label: "Ngày đăng", name: "date", widget: "datetime", required: true }
-      - { label: "Ảnh minh họa", name: "thumbnail", widget: "image" }
-      - { label: "Tóm tắt", name: "description", widget: "text" }
-      - { label: "Nội dung", name: "body", widget: "markdown" }
-      - { label: "Thể loại", name: "tags", widget: "list", default: ["Anime"] }
+      - {label: "Tiêu đề", name: "title", widget: "string"}
+      - {label: "Nội dung", name: "body", "widget": "markdown"}
