@@ -2,9 +2,26 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
-  <title>ANICORE - Thế giới hoạt hình</title>
+  
+  <!-- SEO -->
+  <title>{{ .Params.seo_title | default .Title }}</title>
+  <meta name="description" content="{{ .Params.seo_description | default "Khám phá thế giới hoạt hình đầy màu sắc cùng ANICORE" }}">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Styles -->
   <link rel="stylesheet" href="style.css" />
+
+  <!-- Netlify Identity -->
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NRNPNBBL2Y"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-NRNPNBBL2Y');
+  </script>
 </head>
 <body>
   <header>
