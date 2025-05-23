@@ -1,34 +1,44 @@
 backend:
   name: git-gateway
-  branch: main # Hoặc master, tùy thuộc vào tên nhánh chính của bạn
+  branch: main
 
-media_folder: "static/uploads" # Đường dẫn đến thư mục chứa ảnh/media trong dự án của bạn
-public_folder: "/uploads"     # Đường dẫn công khai đến thư mục media từ gốc website
+media_folder: "static/uploads"
+public_folder: "/uploads"
 
 collections:
   - name: "posts"
     label: "Bài viết"
     folder: "content/posts"
     create: true
-    # Tạm thời thay đổi slug để kiểm tra:
-    slug: "{{year}}-{{month}}-{{day}}" # Chỉ dùng ngày tháng
-    # Hoặc thậm chí đơn giản hơn nếu cần:
-    # slug: "test-post" 
-   
+    slug: "{{year}}-{{month}}-{{day}}"
+
     fields:
       - {label: "Tiêu đề", name: "title", widget: "string"}
+      - {label: "Tiêu đề SEO", name: "seo_title", widget: "string", required: false}
+      - {label: "Mô tả SEO", name: "seo_description", widget: "text", required: false}
+      - {label: "Slug (đường dẫn)", name: "slug", widget: "string", required: false}
       - {label: "Ngày đăng", name: "date", widget: "datetime"}
       - {label: "Ảnh đại diện", name: "thumbnail", widget: "image", required: false}
       - {label: "Tóm tắt", name: "description", widget: "text"}
       - {label: "Nội dung", name: "body", widget: "markdown"}
-      - {label: "Tags", name: "tags", widget: "list", allow_add: true, field: {label: "Tag", name: "tag", widget: "string"}}
+      - {
+          label: "Tags",
+          name: "tags",
+          widget: "list",
+          allow_add: true,
+          field: {label: "Tag", name: "tag", widget: "string"}
+        }
       - {label: "Danh mục", name: "category", widget: "select", options: ["Công nghệ", "Cuộc sống", "Du lịch"], default: "Công nghệ"}
 
   - name: "pages"
     label: "Trang"
-    folder: "content/pages" # Đảm bảo dòng này đã được thay đổi thành "content/pages"
+    folder: "content/pages"
     create: true
     slug: "{{slug}}"
+
     fields:
       - {label: "Tiêu đề", name: "title", widget: "string"}
-      - {label: "Nội dung", name: "body", "widget": "markdown"}
+      - {label: "Tiêu đề SEO", name: "seo_title", widget: "string", required: false}
+      - {label: "Mô tả SEO", name: "seo_description", widget: "text", required: false}
+      - {label: "Slug (đường dẫn)", name: "slug", widget: "string", required: false}
+      - {label: "Nội dung", name: "body", widget: "markdown"}
