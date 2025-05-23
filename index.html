@@ -33,5 +33,22 @@
     <img src="https://i.imgur.com/ZSkeQ6q.png" alt="anime illustration" />
     <p>Xem đánh giá phim hoạt hình, giới thiệu trailer mới nhất, và khám phá nhân vật yêu thích của bạn!</p>
   </section>
+
+  <!-- Bình luận Disqus -->
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.url = window.location.href;
+      this.page.identifier = window.location.pathname;
+    };
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://anicore-blog.disqus.com/embed.js';  // ← Thay bằng shortname thật của bạn
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Vui lòng bật JavaScript để xem bình luận từ Disqus.</noscript>
+
 </body>
 </html>
