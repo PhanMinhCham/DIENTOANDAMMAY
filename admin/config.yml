@@ -8,7 +8,7 @@ public_folder: "/uploads"     # Đường dẫn công khai đến thư mục med
 collections:
   - name: "posts"
     label: "Bài viết"
-    folder: "content/posts" # THAY ĐỔI TẠI ĐÂY
+    folder: "content/posts" # Đảm bảo dòng này đã được thay đổi thành "content/posts"
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
@@ -22,7 +22,7 @@ collections:
 
   - name: "pages"
     label: "Trang"
-    folder: "content/pages" # THAY ĐỔI TẠI ĐÂY
+    folder: "content/pages" # Đảm bảo dòng này đã được thay đổi thành "content/pages"
     create: true
     slug: "{{slug}}"
     fields:
