@@ -8,9 +8,13 @@ public_folder: "/uploads"     # Đường dẫn công khai đến thư mục med
 collections:
   - name: "posts"
     label: "Bài viết"
-    folder: "content/posts" # Đảm bảo dòng này đã được thay đổi thành "content/posts"
+    folder: "content/posts"
     create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    # Tạm thời thay đổi slug để kiểm tra:
+    slug: "{{year}}-{{month}}-{{day}}" # Chỉ dùng ngày tháng
+    # Hoặc thậm chí đơn giản hơn nếu cần:
+    # slug: "test-post" 
+   
     fields:
       - {label: "Tiêu đề", name: "title", widget: "string"}
       - {label: "Ngày đăng", name: "date", widget: "datetime"}
